@@ -1,0 +1,196 @@
+/* Navigation.css - Responsive side drawer styling */
+
+.hamburger-btn {
+  /* display: none; */
+  position: static;
+  margin: 0;
+  top: 0px;
+  left: 0px;
+  z-index: 1001;
+  background: #1e90ff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  background-color: #e89a1f;
+}
+
+.hamburger-btn:focus {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}
+
+/* Side Drawer */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-left: 100px;
+  border-bottom: 1px solid #555;
+}
+
+.drawer-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #1e90ff;
+}
+
+.close-btn:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: -2px;
+}
+
+/* Navigation List */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border-left: 4px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #444;
+  border-left-color: #1e90ff;
+}
+
+.nav-link:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: -2px;
+  background-color: #444;
+}
+
+.nav-link:active {
+  background-color: #555;
+  border-left-color: #1e90ff;
+  color: #1e90ff;
+}
+
+/* Drawer Overlay (for mobile) */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .side-drawer {
+    transform: translateX(-100%);
+  }
+
+  .side-drawer.open {
+    transform: translateX(0);
+  }
+
+  .drawer-overlay {
+    display: block;
+  }
+
+  .side-drawer {
+    width: 300px;
+  }
+}
+
+/* Tablet/Desktop - Drawer always visible */
+@media (min-width: 769px) {
+  .side-drawer {
+    transform: translateX(0);
+    width: 250px;
+    box-shadow: none;
+  }
+
+  .hamburger-btn {
+    display: none;
+  }
+
+  .drawer-overlay {
+    display: none;
+  }
+
+  .close-btn {
+    display: none;
+  }
+
+  .drawer-header {
+    border-bottom: 1px solid #555;
+  }
+
+  /* Add left padding to main content area (handled in App.js wrapper) */
+  body {
+    margin-left: 250px;
+  }
+}
+
+/* Accessibility: High contrast mode support */
+@media (prefers-contrast: more) {
+  .side-drawer {
+    border-right: 2px solid white;
+  }
+
+  .nav-link {
+    border-left-width: 2px;
+  }
+}
+
+/* Accessibility: Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hamburger-btn,
+  .side-drawer,
+  .nav-link {
+    transition: none;
+  }
+}
